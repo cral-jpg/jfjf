@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ci-n's Greenhouse</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script> src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"</script>
+    <script> src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        .container{
+            text-align: center;
+            background-color: beige;
+            margin: auto;
+            font-family: 'Press Start 2P', sans-serif;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 15px;
+        }
+        
+        body {
+            margin: auto;
+            width: 1800px;
+            font-family: 'Press Start 2P', sans-serif;
+            background-image: url("greenhouse/grnhs.png");
+            padding: 10px;
+            text-align: center;
+        }
+        ul{
+            list-style-type: none;
+        }
+        #playplace {
+            width: 950px;
+            height: 530px;
+            background-color: lightgray;
+            border: 12px solid gray;
+            background-image: url("greenhouse/greenhouse.png"); 
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 15px;
+        }
+        #restartButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family: 'Press Start 2P', sans-serif;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #restartButton:hover {
+            background-color: darkred;
+        }
+        #nextButton{
+            display: none;
+        }
+        button {
+            font-family: 'Press Start 2P', sans-serif;
+            width: 500px;
+            height: 70px;
+            font-size: 16px;
+            background-color: #e64a19;;
+            border-width: 5px;
+            border-color: #333;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        button:hover {
+            background-color: sienna;
+        }
+    </style>
+    <script>
+        var S = false;
+        var T = false;
+        var SS = false;
+        var WC = false;
+        var P = false;
+        function showCoords(event){
+            var x = event.clientX;
+            var y = event.clientY;
+            var c = "X: " + x + ", Y: " + y;
+            document.getElementById('mycoords').innerHTML = c;
+            if(x>=540 && x<=660 && y>=310 && y<=400) {
+                alert('You Found The Watering Can!');
+                document.getElementById('WC').style.color = "red";
+                WC = true;
+                href="SA.html"
+            }
+            else if(x>=643 && x<=724 && y>=484 && y<=589) {
+                alert('You Found The Shears!');
+                document.getElementById('S').style.color = "red";
+                S = true;
+            }
+            else if(x>=844 && x<=920 && y>=319 && y<=604) {
+                alert('You Found The Pitchfork!');
+                document.getElementById('P').style.color = "red";
+                P = true;
+            }
+            else if(x>=1010 && x<=1107 && y>=510 && y<=590) {
+                alert('You Found The Trowel!');
+                document.getElementById('T').style.color = "red";
+                T = true;
+            }
+            else if(x>=1135 && x<=1267 && y>=126 && y<=234) {
+                alert('You Found The Sunflower Seeds!');
+                document.getElementById('SS').style.color = "red";
+                SS = true;
+            }
+            if(S && T && SS && WC && P){
+                alert('You Win The Game!');
+            }
+        }
+        document.addEventListener("mousedown", (e) => {
+            let sound_name = new Audio("greenhouse/sbar.mp3");sound_name.play()});
+
+        function restartGame() {
+            var confirmReload = confirm("Do you want to restart the game?");
+            if (confirmReload) {
+                location.reload();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 id="mycoords">X: ,Y:</h1>
+    <div id="playplace" onclick="showCoords(event)"></div>
+    <div class="p-3 mb-2 bg-dark text-white">
+        <div class="container">
+            <h3>Cin's Greenhouse: Help Ci-n Find His Gardening Tools!</h3>
+                <p id="S">Shears</p>
+                <p id="T">Trowel</p>
+                <p id="P">Pitchfork</p>
+                <p id="WC">Watering Can</p>
+                <p id="SS">Sunflower Seeds</p>
+        </div>
+    </div>
+    <button id="restartButton" onclick="restartGame()">Restart Game</button>
+    <button class="button" id="btn" onclick="window.location.href='travel.html'">To Cozybrook Map</button>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developers Page</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', sans-serif;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            background-image: url('BACKGROUND.jpg');
+        }
+        header {
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        .team-section, .cheat-sheet, .references {
+            background-color: #e2e2e2;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .team-section h2, .cheat-sheet h2, .references h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .team-section p, .cheat-sheet p, .references p {
+            font-size: 1.2em;
+        }
+        .cheat-sheet ul, .references ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .cheat-sheet li, .references li {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        .developer {
+            margin: 30px 0;
+            display: inline-block;
+            text-align: center;
+            width: 30%;
+        }
+        .developer img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-media a {
+            font-size: 2em;
+            color: #333;
+        }
+        .social-media a:hover {
+            color: #FF5722;
+        }
+    </style>
+    <script>
+        document.addEventListener("mousedown", (e) => {
+            let sound_name = new Audio("greenhouse/sbar.mp3");sound_name.play()});
+    </script>
+</head>
+<body>
+    <header>
+        <h1>About the Developers</h1>
+    </header>
+
+    <!-- Team Members Section -->
+    <section class="team-section">
+        <h2>Meet the Team</h2>
+        <p>Our team of passionate developers worked hard to bring the Cozybrook Chronicles to life! Here's a brief introduction to the creators:</p>
+
+        <div class="developer">
+            <img src="maxx.jpg" alt="Maxeen Tambonco">
+            <h3>Maxeen Tambonco - Developer 1</h3>
+        </div>
+
+        <div class="developer">
+            <img src="eyan.jpg" alt="Eianne Cadiente">
+            <h3>Eianne Cadiente - Developer 2</h3>
+        </div>
+
+        <div class="developer">
+            <img src="carcon.jpg" alt="Charlton Peralta">
+            <h3>Charlton Peralta - Developer 3</h3>
+        </div>
+
+        <div class="social-media">
+            <a href="https://github.com/johndoe" target="_blank">GitHub</a>
+            <a href="https://twitter.com/johndoe" target="_blank">Twitter</a>
+            <a href="https://linkedin.com/in/johndoe" target="_blank">LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- Cheat Sheet for Endings Section -->
+    <section class="cheat-sheet">
+        <h2>Explore Different Endings</h2>
+        <p>To uncover all the endings in Cozybrook Chronicles, here's a cheat sheet that will guide you to the best and worst choices:</p>
+        <ul>
+            <li><strong>Ending 1 - Full Restoration Ending:</strong> Help the town thrive by making morally good decisions. Always choose to help others and prioritize the greater good. Win 3 minigames to get this ending.</li>
+            <li><strong>Ending 2 - No Restoration Ending:</strong> Refuse to win any minigames and disregard the well-being of others. This will lead to the town's downfall. Win no minigames to get this ending.</li>
+            <li><strong>Ending 3 - Partial Restoration Ending:</strong> A mix of good and bad choices will lead to a balanced outcome where the town survives, but some sacrifices were made. Win 1 or 2 minigames to get this ending.</li>
+        </ul>
+        <p>Use this guide to experiment with different decisions and unlock all the outcomes in the game!</p>
+    </section>
+
+    <!-- References Section -->
+    <section class="references">
+        <h2>References & Inspiration</h2>
+        <p>We are grateful to the following individuals and resources that helped inspire and shape this project:</p>
+        <ul>
+            <li><strong>Press Start 2P Font:</strong> Used for the retro, pixelated aesthetic of the game. Available from Google Fonts.</li>
+            <li><strong>OpenAI GPT Models:</strong> Used for generating interactive dialogue and game logic. A special thanks to the OpenAI team for their AI models!</li>
+            <li><strong>Game Design Inspiration:</strong> A combination of inspirations from classic adventure and choice-based games, like <em>The Oregon Trail</em> and <em>Choose Your Own Adventure</em> books.</li>
+            <li><strong>Images:</strong> Custom graphics designed using <a href="https://www.canva.com" target="_blank">Canva</a> for character and background artwork.</li>
+        </ul>
+        <p>Thank you to all those who have contributed to this project in any way!</p>
+    </section>
+</body>
+</html>

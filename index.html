@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozybrook Chronicles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+        body {
+            font-family: 'Press Start 2P', sans-serif;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            background-image: url('BACKGROUND.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+
+        #intro p {
+            font-size: 1.2em;
+        }
+
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+
+        #game {
+            display: none;
+        }
+
+
+        .morality-meter {
+            width: 100%;
+            height: 30px;
+            background-color: #ddd;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+
+        .meter-fill {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 0.3s ease;
+        }
+
+
+        .good {
+            background-color: #4CAF50;
+        }
+
+
+        .bad {
+            background-color: #F44336;
+        }
+
+
+        .story-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+
+        #keifer-dialogue {
+            display: none;
+            padding: 40px;
+            border-radius: 10px;
+            color: #333;
+            background-image: url('');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+
+        #restart-button, #next-button {
+            display: none;
+        }
+
+
+        button {
+            font-family: 'Press Start 2P', sans-serif;
+            width: 500px;
+            height: 70px;
+            font-size: 16px;
+            background-color: #e64a19;;
+            border-width: 5px;
+            border-color: #333;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        button:hover {
+            background-color: #e64a19;
+        }
+        .travel-button {
+            font-family: 'Press Start 2P', sans-serif;
+            width: 500px;
+            height: 70px;
+            font-size: 16px;
+            background-color: #e64a19;;
+            border-width: 5px;
+            border-color: #333;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .travelt-button {
+            font-family: 'Press Start 2P', sans-serif;
+            width: 500px;
+            height: 70px;
+            font-size: 16px;
+            background-color: #e64a19;;
+            border-width: 5px;
+            border-color: #333;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .travel-button:hover {
+            background-color: sienna;
+        }
+        button:hover {
+            background-color: sienna;
+        }
+        .travelt-button:hover{
+            background-color: sienna;
+        }
+    </style>
+    <script>
+            document.addEventListener("mousedown", (e) => {
+                let sound_name = new Audio("greenhouse/sbar.mp3");sound_name.play()});
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Cozybrook Chronicles!</h1>
+    </header>
+
+
+    <div id="intro">
+        <p>Welcome to Cozybrook! Your childhood friend, Charlie the Fox, needs your help to restore the village to its former glory.</p>
+        <button onclick="showNameInput()">Touch to Start</button><br>
+        <button class="travel-button" id="btn1" onclick="window.location.href='DEVELOPERS PAGE.html'">To Developer's Page</button>
+        <button class="travelt-button" id="btn" onclick="window.location.href='travel.html'">To Cozybrook Map</button>
+    </div>
+
+
+    <div id="name-input" style="display:none;">
+        <p>Enter your name:</p>
+        <input type="text" id="player-name" placeholder="Your name"><br>
+        <button onclick="startGame()">NEXT</button>
+    </div>
+
+
+    <div id="letter" style="display:none;">
+        <p id="letter-text"></p>
+        <button id="next-button" onclick="nextLetter()">NEXT</button>
+    </div>
+
+
+    <div id="dialogue-box" style="display:none;">
+        <div id="dialogue-text"></div>
+        <button id="next-dialogue-button" onclick="nextDialogue()">NEXT</button>
+    </div>
+
+
+    <div id="keifer-dialogue" style="display:none;">
+        <p id="keifer-text"></p>
+        <button id="next-keifer-button" onclick="nextKeiferDialogue()">NEXT</button>
+    </div>
+
+
+    <div id="game">
+        <div class="morality-meter">
+            <div id="meter-fill" class="meter-fill good" style="width: 50%;"></div>
+        </div>
+
+
+        <div class="story-text" id="story-text"></div>
+        <button id="choice1" onclick="makeChoice(1)"></button>
+        <button id="choice2" onclick="makeChoice(2)"></button>
+    </div>
+
+
+    <button id="restart-button" onclick="restartGame()">Try Again</button>
+
+
+
+
+    <script>
+        let playerName = '';
+        let morality = 50;
+        let gameStarted = false;
+        let currentStage = 1;
+        let wrongChoices = 0;
+        let correctInARow = 0;
+        let wrongInARow = 0;
+
+
+        function showNameInput() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('name-input').style.display = 'block';
+        }
+
+
+        function startGame() {
+            playerName = document.getElementById('player-name').value.trim();
+            if (playerName) {
+                document.getElementById('name-input').style.display = 'none';
+                showLetter();
+            } else {
+                alert('Please enter your name!');
+            }
+        }
+
+
+        function showLetter() {
+            const letterText = `Dear ${playerName},<br><br>I hope you’re doing great! I’ve been thinking—it’s about time you visit me! I need your help restoring my hometown to its former glory. Cozybrook has fallen into despair, but with your help, it can be a thriving, joyful place once again!<br><br>Let me know when you’re free—I’ll start planning the adventure! Can’t wait to see you soon.<br><br>Your friend, Charlie.`;
+            document.getElementById('letter-text').innerHTML = '';
+            let currentWord = 0;
+            const words = letterText.split(' ');
+
+
+            function typeWord() {
+                if (currentWord < words.length) {
+                    const word = words[currentWord];
+                    const wordSpan = document.createElement('span');
+                    wordSpan.classList.add('word');
+                    wordSpan.innerHTML = word + " ";
+                    document.getElementById('letter-text').appendChild(wordSpan);
+                    currentWord++;
+                    setTimeout(typeWord, 200);
+                } else {
+                    document.getElementById('next-button').style.display = 'block';
+                }
+            }
+
+
+            typeWord();
+            document.getElementById('letter').style.display = 'block';
+        }
+
+
+        function nextLetter() {
+            document.getElementById('letter').style.display = 'none';
+            showDialogue();
+        }
+
+
+        function showDialogue() {
+            const dialogueText = `Player: (Thinking) “I wonder what happened to Charlie’s town… He helped me a lot before. Maybe this is my chance to return the favor.”`;
+            const dialogueElement = document.getElementById('dialogue-text');
+            dialogueElement.innerHTML = '';
+            let currentWord = 0;
+            const words = dialogueText.split(' ');
+
+
+            function typeWord() {
+                if (currentWord < words.length) {
+                    const word = words[currentWord];
+                    const wordSpan = document.createElement('span');
+                    wordSpan.classList.add('word');
+                    wordSpan.innerHTML = word + " ";
+                    dialogueElement.appendChild(wordSpan);
+                    currentWord++;
+                    setTimeout(typeWord, 200);
+                }
+            }
+
+
+            typeWord();
+            document.getElementById('dialogue-box').style.display = 'block';
+            document.getElementById('next-dialogue-button').style.display = 'block';
+        }
+
+
+        function nextDialogue() {
+            document.getElementById('dialogue-box').style.display = 'none';
+            showKeiferDialogue();
+        }
+
+
+        function showKeiferDialogue() {
+            document.getElementById('keifer-dialogue').style.display = 'block';
+            document.getElementById('keifer-text').innerHTML = "Keifer: I used to love baking but after my last few failed batches… I lost my confidence.";
+        }
+
+
+        function nextKeiferDialogue() {
+            document.getElementById('keifer-dialogue').style.display = 'none';
+            startDecisionMakingGame();
+        }
+
+
+        function startDecisionMakingGame() {
+            document.getElementById('game').style.display = 'block';
+            gameStarted = true;
+            wrongChoices = 0;
+            correctInARow = 0;
+            wrongInARow = 0;
+            displayStory(currentStage);
+        }
+
+
+        function updateMorality() {
+            const meterFill = document.getElementById("meter-fill");
+            meterFill.style.width = morality + "%";
+            if (morality > 50) {
+                meterFill.classList.remove("bad");
+                meterFill.classList.add("good");
+            } else {
+                meterFill.classList.remove("good");
+                meterFill.classList.add("bad");
+            }
+        }
+
+
+        function displayStory(stage) {
+            const storyText = document.getElementById("story-text");
+            const choice1 = document.getElementById("choice1");
+            const choice2 = document.getElementById("choice2");
+
+
+            switch (stage) {
+                case 1:
+                    storyText.innerHTML = "Keifer is struggling to get enough customers into his bakery. A regular customer is complaining about the quality of the muffins. Do you:";
+                    choice1.innerHTML = "Apologize and offer a free muffin.";
+                    choice2.innerHTML = "Tell them to stop complaining and buy something else.";
+                    break;
+                case 2:
+                    storyText.innerHTML = "A new customer comes in and orders a special cake. They look unsure if they can afford it. Do you:";
+                    choice1.innerHTML = "Offer them a discount to make them happy.";
+                    choice2.innerHTML = "Charge full price, it's a business after all.";
+                    break;
+                case 3:
+                    storyText.innerHTML = "A rival bakery offers a tempting deal to undercut your prices. Do you:";
+                    choice1.innerHTML = "Lower prices to compete and attract more customers.";
+                    choice2.innerHTML = "Keep your prices as is; quality matters more than quantity.";
+                    break;
+                case 4:
+                    storyText.innerHTML = "An emergency happens, and Keifer needs your help urgently to make a large order for a wedding. Do you:";
+                    choice1.innerHTML = "Help him immediately, even if it means putting your personal plans aside.";
+                    choice2.innerHTML = "Turn him down because you already have other priorities.";
+                    break;
+                case 5:
+                    endGame();
+                    return;
+                default:
+                    endGame();
+                    return;
+            }
+
+
+            choice1.style.display = "inline-block";
+            choice2.style.display = "inline-block";
+        }
+
+
+        function makeChoice(choice) {
+            if (wrongChoices >= 3 || correctInARow >= 3) return;
+
+
+            let isCorrect = (choice === 1);
+
+
+            if (isCorrect) {
+                correctInARow++;
+                wrongInARow = 0;
+                morality += 10;
+            } else {
+                wrongInARow++;
+                correctInARow = 0;
+                morality -= 10;
+            }
+
+
+            updateMorality();
+
+
+            if (correctInARow >= 3) {
+                endGame('win');
+                return;
+            }
+
+
+            if (wrongInARow >= 3) {
+                endGame('lose');
+                return;
+            }
+
+
+            currentStage++;
+            displayStory(currentStage);
+        }
+
+
+        function endGame(result) {
+            const storyText = document.getElementById("story-text");
+            const traveltButton = document.getElementById("travelt-button");
+
+
+            if (result === 'win') {
+            storyText.innerHTML = "Congratulations! You've done great!";
+            storyText.innerHTML = "Congratulations! Reload the tab to explore Cozybrook to progress or visit the Developer's Page!";
+            }else {
+            storyText.innerHTML = "Sorry, try again!";
+            document.getElementById('restart-button').style.display = 'block';
+        }
+
+        choice1.style.display = "none";
+        choice2.style.display = "none";
+
+            document.getElementById('next-button').style.display = result === 'win' ? 'block' : 'none';
+            document.getElementById('restart-button').style.display = result === 'lose' ? 'block' : 'none';
+        }
+
+
+        function restartGame() {
+            morality = 50;
+            correctInARow = 0;
+            wrongInARow = 0;
+            wrongChoices = 0;
+            currentStage = 1;
+            document.getElementById('restart-button').style.display = 'none';
+            document.getElementById('game').style.display = 'none';
+            showLetter();
+        }
+    </script>
+
+
+</body>
+</html>

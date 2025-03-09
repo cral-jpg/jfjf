@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozybrook Travel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            font-family: 'Press Start 2P', sans-serif;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-image: url("ery.png");
+        }
+
+        h1 {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .quadrant {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+        }
+
+        .top-left { top: 0; left: 0; }
+        .top-right { top: 0; right: 0; }
+        .bottom-left { bottom: 0; left: 0; }
+        .bottom-right { bottom: 0; right: 0; }
+
+        .travel-button {
+            font-family: 'Press Start 2P', sans-serif;
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            font-size: 16px;
+            background-color: moccasin;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .travel-button:hover {
+            background-color: sienna;
+        }
+
+        #btn1 { top: 25%; left: 25%; }
+        #btn2 { top: 25%; right: 25%; }
+        #btn3 { bottom: 25%; left: 25%; }
+        #btn4 { bottom: 25%; right: 25%; }
+    </style>
+</head>
+<body>
+
+    <h1 style="color: rgb(49, 28, 28);">Click to Travel Around Cozybrook</h1>
+
+    <div class="quadrant top-left">
+        <button class="travel-button" id="btn1" onclick="window.location.href='cafe.html'">The Cafe</button>
+    </div>
+    <div class="quadrant top-right">
+        <button class="travel-button" id="btn2" onclick="window.location.href='greenhouse.html'">The Greenhouse</button>
+    </div>
+    <div class="quadrant bottom-left">
+        <button class="travel-button" id="btn3" onclick="window.location.href='index.html'">Back Home</button>
+    </div>
+    <div class="quadrant bottom-right">
+        <button class="travel-button" id="btn4" onclick="window.location.href='end1.html'">End Game</button>
+    </div>
+</body>
+</html>
